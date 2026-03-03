@@ -29,7 +29,7 @@ sh docker/reset_docker_instances.sh
 #### Seed the replica via base backup
 Shell into `db02`:
 ```sh
-`docker exec --user postgres -it db02 /bin/bash`
+docker exec --user postgres -it db02 /bin/bash
 ```
 
 Copy paste the following block together:
