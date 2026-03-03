@@ -1,0 +1,5 @@
+.pgpass
+pg_hba.conf
+postgresql.*
+replication_user.sql
+postgres-docker
