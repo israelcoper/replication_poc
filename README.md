@@ -100,6 +100,15 @@ docker exec db01 psql -U postgres -c "CREATE TABLE test_repl(id serial, val text
 docker exec db02 psql -U postgres -c "SELECT * FROM test_repl;"
 ```
 
+#### Monitor replication lag
+Shell into `db01`:
+```sh
+docker exec -it db01 psql -U postgres
+```
+```sql
+SELECT redo_lsn, slot_name, restart_lsn, ROUND((redo_lsn - restart_lsn) / 1024 / 1024 / 1024, 2) AS BG_behind FROM PG_CONTROL_CHECKPOINT(), PG_REPLICATION_SLOTS;
+```
+
 #### Tear down everything (containers + data volumes)
 ```sh
 docker compose down -v
